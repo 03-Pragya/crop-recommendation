@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌱 Smart Crop Recommendation System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="glass-card p-8 shadow-xl w-full max-w-4xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                🌱 Smart Crop Recommendation System
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Enter your soil and environmental conditions to get AI-powered crop recommendations 
+                for optimal agricultural yield.
+            </p>
+        </div>
+
+        <!-- Input Form -->
+        <form id="predictionForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div class="space-y-2">
+                <label for="nitrogen" class="block text-sm font-semibold text-gray-700">
+                    🧪 Nitrogen (N)
+                </label>
+                <input 
+                    type="number" 
+                    id="nitrogen" 
+                    name="N" 
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition duration-300" 
+                    placeholder="e.g., 90" 
+                    min="0" 
+                    max="200" 
+                    required>
+                <small class="text-gray-500">Nitrogen content in soil (0-200)</small>
+            </div>
+
+            <div class="space-y-2">
+                <label for="phosphorus" class="block text-sm font-semibold text-gray-700">
+                    ⚛️ Phosphorus (P)
+                </label>
+                <input 
+                    type="number" 
+                    id="phosphorus" 
+                    name="P" 
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition duration-300" 
+                    placeholder="e.g., 42" 
+                    min="0" 
+                    max="150" 
+                    required>
+                <small class="text-gray-500">Phosphorus content in soil (0-150)</small>
+            </div>
+
+            <div class="space-y-2">
+                <label for="potassium" class="block text-sm font-semibold text-gray-700">
+                    ⚡ Potassium (K)
+                </label>
+                <input 
+                    type="number" 
+                    id="potassium" 
+                    name="K" 
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition duration-300" 
+                    placeholder="e.g., 43" 
+                    min="0" 
+                    max="210" 
+                    required>
+                <small class="text-gray-500">Potassium content in soil (0-210)</small>
+            </div>
+
+            <div class="space-y-2">
+                <label for="temperature" class="block text-sm font-semibold text-gray-700">
+                    🌡️ Temperature (°C)
+                </label>
+                <input 
+                    type="number" 
+                    step="0.01" 
+                    id="temperature" 
+                    name="temperature" 
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition duration-300" 
+                    placeholder="e.g., 20.879" 
+                    min="8" 
+                    max="50" 
+                    required>
+                <small class="text-gray-500">Average temperature (8-50°C)</small>
+            </div>
+
+            <div class="space-y-2">
+                <label for="humidity" class="block text-sm font-semibold text-gray-700">
+                    💧 Humidity (%)
+                </label>
+                <input 
+                    type="number" 
+                    step="0.01" 
+                    id="humidity" 
+                    name="humidity" 
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition duration-300" 
+                    placeholder="e.g., 82.002" 
+                    min="10" 
+                    max="100" 
+                    required>
+                <small class="text-gray-500">Relative humidity (10-100%)</small>
+            </div>
+
+            <div class="space-y-2">
+                <label for="ph" class="block text-sm font-semibold text-gray-700">
+                    🧪 pH Value
+                </label>
+                <input 
+                    type="number" 
+                    step="0.01" 
+                    id="ph" 
+                    name="ph" 
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition duration-300" 
+                    placeholder="e.g., 6.502" 
+                    min="3" 
+                    max="10" 
+                    required>
+                <small class="text-gray-500">Soil pH level (3-10)</small>
+            </div>
+
+            <div class="space-y-2">
+                <label for="rainfall" class="block text-sm font-semibold text-gray-700">
+                    🌧️ Rainfall (mm)
+                </label>
+                <input 
+                    type="number" 
+                    step="0.01" 
+                    id="rainfall" 
+                    name="rainfall" 
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition duration-300" 
+                    placeholder="e.g., 202.935" 
+                    min="20" 
+                    max="300" 
+                    required>
+                <small class="text-gray-500">Annual rainfall (20-300mm)</small>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="md:col-span-2 lg:col-span-3 mt-6">
+                <button 
+                    type="submit" 
+                    class="w-full bg-gradient-to-r from-emerald-600 to-green-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:from-emerald-700 hover:to-green-700 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-emerald-500 focus:ring-offset-2 text-lg">
+                    🔮 Get Smart Crop Recommendation
+                </button>
+            </div>
+        </form>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="text-center hidden">
+            <div class="animate-spin inline-block w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full"></div>
+            <p class="mt-4 text-xl text-gray-700 font-medium">🤖 AI is analyzing your conditions...</p>
+        </div>
+
+        <!-- Result Display -->
+        <div id="resultDisplay" class="text-center text-lg font-semibold hidden"></div>
+    </div>
+
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const resultDisplay = document.getElementById('resultDisplay');
+            const submitButton = event.target.querySelector('button[type="submit"]');
+            
+            // Show loading, hide results
+            resultDisplay.classList.add('hidden');
+            loadingIndicator.classList.remove('hidden');
+            submitButton.disabled = true;
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            try {
+                // Make prediction request
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Success result
+                    resultDisplay.innerHTML = `
+                        <div class="glass-card bg-gradient-to-r from-emerald-50 to-green-50 text-emerald-800 p-8 border-l-8 border-emerald-500">
+                            <div class="flex items-center justify-center mb-4">
+                                <div class="text-6xl">🌾</div>
+                            </div>
+                            <h2 class="text-2xl font-bold mb-4">🎯 Recommended Crop:</h2>
+                            <p class="text-4xl font-bold mb-4 text-emerald-700">${result.predicted_crop.toUpperCase()}</p>
+                            <p class="text-sm text-emerald-600">Model: ${result.model_used || 'AI Model'}</p>
+                            <div class="mt-6 p-4 bg-white bg-opacity-50 rounded-lg">
+                                <p class="text-sm text-emerald-700">
+                                    <strong>💡 Tip:</strong> This recommendation is based on your soil composition and environmental conditions. 
+                                    Consider consulting with local agricultural experts for best results.
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Error result
+                    resultDisplay.innerHTML = `
+                        <div class="glass-card bg-gradient-to-r from-red-50 to-pink-50 text-red-800 p-6 border-l-8 border-red-500">
+                            <h2 class="text-xl font-bold mb-2">❌ Prediction Failed</h2>
+                            <p class="text-base">${result.error}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                // Network error
+                resultDisplay.innerHTML = `
+                    <div class="glass-card bg-gradient-to-r from-red-50 to-pink-50 text-red-800 p-6 border-l-8 border-red-500">
+                        <h2 class="text-xl font-bold mb-2">🌐 Connection Error</h2>
+                        <p class="text-base">Unable to connect to the server. Please check your internet connection and try again.</p>
+                    </div>
+                `;
+                console.error('Network error:', error);
+            } finally {
+                // Hide loading and re-enable button
+                loadingIndicator.classList.add('hidden');
+                resultDisplay.classList.remove('hidden');
+                submitButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
